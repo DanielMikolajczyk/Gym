@@ -10,3 +10,11 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+import './styles/global.scss';
+
+import $ from 'jquery';
+
+$(document).ready(function() {
+    
+});
