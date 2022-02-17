@@ -19,6 +19,17 @@ class ExcerciseRepository extends ServiceEntityRepository
         parent::__construct($registry, Excercise::class);
     }
 
+    public function findAllWhereNameLike($value)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.name LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('e.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Excercise[] Returns an array of Excercise objects
     //  */

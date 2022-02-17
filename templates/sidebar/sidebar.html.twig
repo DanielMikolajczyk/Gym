@@ -1,0 +1,22 @@
+<div>
+    <a href="" class="d-flex align-items-center p-1 pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <span><i class="fa-solid fa-dumbbell h3"></i></span>
+        <span class="font-weight-bold h3 ms-2"> Siłownia</span>
+    </a>
+    <ul class="list-unstyled ps-0 ">
+        {% include "sidebar/_li.html.twig" with {
+            'category'      : 'category',
+            'display'       : 'Kategorie',
+            'route_display' : ['Lista kategorii','Stwórz kategorię'],
+            'routes'        : ['category_index','category_new']}
+        %}
+
+        {% include "sidebar/_li.html.twig" with {
+            'category'      : 'excercises',
+            'display'       : 'Ćwiczenia',
+            'route_display' : ['Lista ćwiczeń','Dodaj ćwiczenie'],
+            'routes'        : ['excercise_index','excercise_new']}
+        %}
+        
+    </ul>
+</div>

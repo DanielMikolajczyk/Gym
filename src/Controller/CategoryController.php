@@ -37,9 +37,12 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
         }
+        foreach($excerciseRepository->findAll() as $excercise){
+            $excerciseNames[] = $excercise->getName();
+        }
         return $this->renderForm('category/new.html.twig', [
             'category' => $category,
-            'excercises' => $excerciseRepository->findAll(),
+            'excercises' => $excerciseNames,
             'form' => $form,
         ]);
     }

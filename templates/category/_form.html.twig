@@ -3,12 +3,11 @@
     {{ form_row(form.parent)}}
     {{ form_row(form.final)}}
 
-    <select multiple name="category[excercises][]" id="">
-        {% for excercise in excercises %}
-            <option value="{{ excercise.getId()}}">{{ excercise.getName()}}</option>
-        {% endfor %}
-    </select>
+    <input type="text" name="category[name]" id="input_category_name">
+    <input type="hidden" name="asd" data-info="{{ excercises|join(",") }}">
 
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-info">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
+
