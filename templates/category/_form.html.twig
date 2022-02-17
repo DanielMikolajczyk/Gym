@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+    {{ form_row(form.name)}}
+    {{ form_row(form.parent)}}
+    {{ form_row(form.final)}}
+
+    <select multiple name="category[excercises][]" id="">
+        {% for excercise in excercises %}
+            <option value="{{ excercise.getId()}}">{{ excercise.getName()}}</option>
+        {% endfor %}
+    </select>
+
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

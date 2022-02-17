@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excercise index{% endblock %}
+
+{% block body %}
+    <h1>Excercise index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Url</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for excercise in excercises %}
+            <tr>
+                <td>{{ excercise.id }}</td>
+                <td>{{ excercise.name }}</td>
+                <td>{{ excercise.url }}</td>
+                <td>
+                    <a href="{{ path('excercise_show', {'id': excercise.id}) }}">show</a>
+                    <a href="{{ path('excercise_edit', {'id': excercise.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('excercise_new') }}">Create new</a>
+{% endblock %}
