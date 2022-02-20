@@ -1,7 +1,7 @@
 import $ from 'jquery';
 $(document).ready(function() {
-    let sth = $('input[name="asd"]').data('info').split(',');
-    console.log(sth)
+    //let sth = $('#category_childs').data('info').split(',');
+    //console.log(sth)
     
     // $('#input_category_name').amsifySuggestags({
     //     suggestions: sth,
@@ -12,7 +12,7 @@ $(document).ready(function() {
     //     printValues: false,
     // });
 
-    $('#input_category_name').amsifySuggestags({
+    $('#category_childs').amsifySuggestags({
         suggestionsAction : {
             minChars: 1,
             minChange: -1,
@@ -23,6 +23,7 @@ $(document).ready(function() {
         whiteList: true,
         selectOnHover: false,
         printValues: false,
+        noSuggestionMsg: 'Nie znaleziono podanych ćwiczeń'
     })
 });
 

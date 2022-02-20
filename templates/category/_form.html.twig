@@ -1,13 +1,14 @@
-{{ form_start(form) }}
-    {{ form_row(form.name)}}
-    {{ form_row(form.parent)}}
-    {{ form_row(form.final)}}
-
-    <input type="text" name="category[name]" id="input_category_name">
-    <input type="hidden" name="asd" data-info="{{ excercises|join(",") }}">
-
-
-    <button class="btn btn-info">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
-
+<div class="my-2">
+    {{ form_start(form) }}
+        {{ form_row(form.name)}}
+        {{ form_row(form.parent)}}
+        {{ form_row(form.final)}}
+        {{ form_row(form.childs)}}
+        <div class="mb-3 text-end">
+            <button class="btn btn-primary " type="submit">
+                {{button_label|default('Stwórz')}} <i class="fa-solid fa-check"></i>
+            </button>
+        </div>
+    {{ form_end(form) }}
+</div>
 
