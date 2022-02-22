@@ -12,18 +12,34 @@ $(document).ready(function() {
     //     printValues: false,
     // });
 
-    $('#category_childs').amsifySuggestags({
+    $('#category_excercises').amsifySuggestags({
         suggestionsAction : {
-            minChars: 1,
+            minChars: 2,
             minChange: -1,
-            delay: 100,
+            delay: 200,
             type: 'GET',
-            url: '/api/excercise/suggest'
+            url: '/api/exercise/suggest'
         },
         whiteList: true,
         selectOnHover: false,
         printValues: false,
         noSuggestionMsg: 'Nie znaleziono podanych ćwiczeń'
     })
+
+    $('#category_parent').amsifySuggestags({
+        suggestionsAction : {
+            minChars: 2,
+            minChange: -1,
+            delay: 500,
+            type: 'GET',
+            url: '/api/category/suggest'
+        },
+        whiteList: true,
+        selectOnHover: false,
+        printValues: false,
+        noSuggestionMsg: 'Nie znaleziono podanej kateogrii'
+    })
+
+    $('#category_parent_data').data('information',50);
 });
 

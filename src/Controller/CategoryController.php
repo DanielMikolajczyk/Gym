@@ -24,7 +24,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/new', name: 'category_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, ExcerciseRepository $excerciseRepository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, ExcerciseRepository $excerciseRepository, CategoryRepository $categoryRepository): Response
     {
         $category = new Category();
 
@@ -32,6 +32,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dd($category);
             $entityManager->persist($category);
             $entityManager->flush();
 
@@ -40,6 +41,7 @@ class CategoryController extends AbstractController
         foreach($excerciseRepository->findAll() as $excercise){
             $excerciseNames[] = $excercise->getName();
         }
+
         return $this->renderForm('category/new.html.twig', [
             'category' => $category,
             'excercises' => $excerciseNames,

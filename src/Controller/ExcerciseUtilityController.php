@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/api/excercise')]
+#[Route('/api/exercise')]
 class ExcerciseUtilityController extends AbstractController
 {
     #[Route('/suggest', methods: ['GET'])]

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,16 +17,18 @@ class CategoryType extends AbstractType
             ->add('name',null,[
                 'label' => 'Nazwa *'
             ])
-            ->add('parent',null,[
-                'label' => 'Kategoria nadrzędna'
+            ->add('parent',EntityType::class,[
+                'class' => Category::class,
+                'label' => 'Kategoria nadrzędna',
             ])
             ->add('final',null,[
                 'label' => 'Ostateczna *'
             ])
-            ->add('childs',TextType::class,[
+            ->add('excercises',TextType::class,[
                 'label' => 'Dodaj ćwiczenia',
                 'help'  => 'Tylko dla kategorii ostatecznych',
-                'mapped' => false
+                'mapped' => false,
+                'required' => false
             ])
             //->add('excercises',EntityType::class,[
             //    'class' => Excercise::class,

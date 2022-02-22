@@ -1,9 +1,11 @@
+
+
 <div class="my-2">
     {{ form_start(form) }}
         {{ form_row(form.name)}}
         {{ form_row(form.parent)}}
         {{ form_row(form.final)}}
-        {{ form_row(form.childs)}}
+        {{ form_row(form.excercises)}}
         <div class="mb-3 text-end">
             <button class="btn btn-primary " type="submit">
                 {{button_label|default('Stwórz')}} <i class="fa-solid fa-check"></i>
@@ -11,4 +13,5 @@
         </div>
     {{ form_end(form) }}
 </div>
+
 
