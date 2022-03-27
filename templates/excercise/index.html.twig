@@ -1,37 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Excercise index{% endblock %}
+{% block title %}Ćwiczenia{% endblock %}
 
 {% block body %}
-    <h1>Excercise index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Url</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for excercise in excercises %}
-            <tr>
-                <td>{{ excercise.id }}</td>
-                <td>{{ excercise.name }}</td>
-                <td>{{ excercise.url }}</td>
-                <td>
-                    <a href="{{ path('excercise_show', {'id': excercise.id}) }}">show</a>
-                    <a href="{{ path('excercise_edit', {'id': excercise.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="px-5 py-3 container-lg bg-white rounded-lg shadow">
+        <div class="d-flex flex-row justify-content-between align-items-end mb-3">
+            <h1>Lista ćwiczeń</h1>
+            <div class="d-flex flex-row align-items-center">
+                <i class="fa-solid fa-search mr-2"></i>
+                <input class="form-control mr-4 w-50" type="search" placeholder="Szukaj...">
+                <div>
+                    <a href="{{ path('excercise_new') }}">
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-plus"></i> Stwórz nowe
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('excercise_new') }}">Create new</a>
+        <div class="">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nazwa</th>
+                        <th>Url</th>
+                        <th class="text-right">Opcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for excercise in excercises %}
+                    <tr>
+                        <td>{{ excercise.id }}</td>
+                        <td>{{ excercise.name }}</td>
+                        <td>{{ excercise.url }}</td>
+                        <td class="text-right">
+                            <a href="{{ path('excercise_show', {'id': excercise.id}) }}" class="text-decoration-none">
+                                <button class="btn btn-outline-success">
+                                    <i class="fa-solid fa-eye"></i> Szczegóły
+                                </button>
+                            </a>
+                            <a href="{{ path('excercise_edit', {'id': excercise.id}) }}">
+                                <button class="btn btn-outline-warning">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edytuj
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">Nie znaleziono żadych ćwiczeń</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
 {% endblock %}

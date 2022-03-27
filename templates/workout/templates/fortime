@@ -1,0 +1,260 @@
+
+    PIERWSZA SEKCJA
+    <div class="bg-danger border-dark border">
+        <select name="" class="bg-danger text-white shadow-none" id="">
+            <option value="ROZGRZEWKA">ROZGRZEWKA</option>
+        </select>
+        <span class="float-end me-3 text-white">
+            <i id="rolling_add" class="fa-solid fa-minus"></i>
+        </span>
+    </div>
+        {# PIERWSZA SEKCJA KOLUMNY #}
+    <div class="row g-0 bg-warning fw-bold">
+        <div class="col-1 p-0 bg-warning border border-dark">
+            Data
+        </div>
+        <div class="col-2 p-0 bg-warning border border-dark">
+            Forma
+            <span class="float-end me-1">
+                <i id="warmup_add" class="fa-solid fa-plus"></i>
+            </span>
+        </div>
+        <div class="col-9 p-0 bg-warning border border-dark">
+            Uwagi
+        </div>
+    </div>
+        {# PIERWSZA SEKCJA Wartości #}
+
+    <div class="row g-0">
+        <div class="col-1 p-0">
+            <input type="text" class="w-100 border border-dark o-bg-gray-400">
+        </div>
+        <div class="col-2 p-0">
+            <select name="" id="" class="w-100 border border-dark o-bg-gray-400">
+                <option value=""></option>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+            </select>
+        </div>
+        <div class="col-9 p-0">
+            <input type="text" class="w-100 border border-dark o-bg-gray-400">
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col-1 p-0">
+            <input type="text" class="w-100 border border-dark o-bg-gray-200">
+        </div>
+        <div class="col-2 p-0">
+            <select name="" id="" class="w-100 border border-dark o-bg-gray-200">
+                <option value=""></option>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+            </select>
+        </div>
+        <div class="col-9 p-0">
+            <input type="text" class="w-100 border border-dark o-bg-gray-200">
+        </div>
+    </div>
+
+    {# DRUGA SEKCJA #}
+    <div class="bg-danger border-dark border">
+        <select name="" class="bg-danger text-white shadow-none" id="">
+            <option value="REAKTYWNOŚĆ">REAKTYWNOŚĆ</option>
+        </select>
+        <span class="float-end me-3 text-white">
+            <i id="rolling_add" class="fa-solid fa-minus"></i>
+        </span>
+        <span class="float-end me-3 text-white">
+            <i id="rolling_add" class="fa-solid fa-plus"></i>
+        </span>
+    </div>
+        {# DRUGA SEKCJA KOLUMNY #}
+    <div class="row g-0 bg-warning fw-bold">
+        <div class="col-1 p-0 bg-warning border border-dark">
+            Data
+        </div>
+        <div class="col-4 p-0 bg-warning border border-dark">
+            Ćwiczenie
+        </div>
+        <div class="col-2 p-0 bg-warning border border-dark">
+            Serie
+        </div>
+        <div class="col-2 p-0 bg-warning border border-dark">
+            Powtórzenia
+        </div>
+        <div class="col-2 p-0 bg-warning border border-dark">
+            Obciążenie
+        </div>
+        <div class="col-1 p-0 bg-warning border border-dark">
+            Przerwa
+        </div>
+    </div>
+        {# DRUGA SEKCJA Wartości #}
+
+    <div class="row g-0">
+        <div class="col-1 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-4 p-0">
+            <select name="" id="" class="w-100 border border-dark o-bg-gray-400">
+                <option value=""></option>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+            </select>
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-1 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+    </div>
+
+    {# TRZECIA SEKCJA #}
+    <div class="bg-danger border-dark border">
+        <select name="" class="bg-danger text-white shadow-none" id="">
+            <option value="PREWENCJA URAZÓW">PREWENCJA URAZÓW</option>
+        </select>
+        <span class="float-end me-3 text-white">
+            <i id="rolling_add" class="fa-solid fa-minus"></i>
+        </span>
+        <span class="float-end me-3 text-white">
+            <i id="rolling_add" class="fa-solid fa-plus"></i>
+        </span>
+    </div>
+        {# TRZECIA SEKCJA KOLUMNY #}
+    <div class="row g-0 bg-warning fw-bold">
+        <div class="col-1 p-0 bg-warning border border-dark">
+            Data
+        </div>
+        <div class="col-4 p-0 bg-warning border border-dark">
+            Ćwiczenie
+        </div>
+        <div class="col-2 p-0 bg-warning border border-dark">
+            Serie
+        </div>
+        <div class="col-2 p-0 bg-warning border border-dark">
+            Powt.
+        </div>
+        <div class="col-2 p-0 bg-warning border border-dark">
+            Obciążenie
+        </div>
+        <div class="col-1 p-0 bg-warning border border-dark">
+            Przerwa
+        </div>
+    </div>
+        {# TRZECIA SEKCJA Wartości #}
+
+    <div class="row g-0">
+        <div class="col-1 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-4 p-0">
+            <select name="" id="" class="w-100 border border-dark o-bg-gray-400">
+                <option value=""></option>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+            </select>
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-1 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+    </div>
+
+    {# CZWARTA SEKCJA #}
+    <div class="bg-danger border-dark border">
+        <select name="" class="bg-danger text-white shadow-none" id="">
+            <option value="WYTRZYMAŁOŚĆ">WYTRZYMAŁOŚĆ</option>
+        </select>
+        <span class="float-end me-3 text-white">
+            <i id="rolling_add" class="fa-solid fa-minus"></i>
+        </span>
+        <span class="float-end me-3 text-white">
+            <i id="rolling_add" class="fa-solid fa-plus"></i>
+        </span>
+    </div>
+
+    <div class="row g-0 bg-warning fw-bold ">
+        <div class="col-1 p-0 bg-warning border border-dark fs-6">
+            Data
+        </div>
+        <div class="col-2 p-0 border border-dark bg-warning">
+            Metoda
+        </div>
+        <div class="col-1 p-0 border border-dark bg-warning">
+            Intensywność
+        </div>
+        <div class="col-2 p-0 border border-dark bg-warning">
+            Dł. Odcinka
+        </div>
+        <div class="col-1 p-0 border border-dark bg-warning">
+            Serie
+        </div>
+        <div class="col-1 p-0 border border-dark bg-warning">
+            Powt.
+        </div>
+        <div class="col-2 p-0 border border-dark bg-warning">
+            Praca : wypoczynek
+        </div>
+        <div class="col-2 p-0 border border-dark bg-warning">
+            Charakter przerwy
+        </div>
+    </div>
+
+    <div class="row g-0">
+        <div class="col-1 p-0">
+            <input class="w-100 border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-1 p-0">
+            <input class="w-100 border border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-1 p-0">
+            <input class="w-100 border border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-1 p-0">
+            <input class="w-100 border border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border border-dark o-bg-gray-400" type="text">
+        </div>
+        <div class="col-2 p-0">
+            <input class="w-100 border border border-dark o-bg-gray-400" type="text">
+        </div>
+    </div>
+
+
+                                <div class="col-8 p-0">
+                                <input class="w-100 border border border-dark o-bg-gray-400" type="text" name="correction[${rowNumber}][excercise]>
+                            </div>
+                            <div class="col-4 p-0">
+                                <input class="w-100 border border border-dark o-bg-gray-400" type="text" name="correction[${rowNumber}][comment]>
+                            </div>

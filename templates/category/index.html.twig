@@ -5,11 +5,11 @@
 {% block body %}
 
     <div class="px-5 py-3 container-lg bg-white rounded-lg shadow">
-        <div class="d-flex flex-row justify-content-between align-items-end mb-3">
-            <h1>Lista kategorii</h1>
+        <div class="d-flex flex-row justify-content-between align-items-right mb-3">
+            <h2>Lista kategorii</h2>
             <div class="d-flex flex-row align-items-center">
-                <i class="fa-solid fa-search me-2"></i>
-                <input class="form-control me-4 w-50" type="search" placeholder="Szukaj...">
+                <i class="fa-solid fa-search mr-2"></i>
+                <input class="form-control mr-4 w-50" type="search" placeholder="Szukaj...">
                 <div>
                     <a href="{{ path('category_new') }}">
                         <button class="btn btn-primary">
@@ -26,9 +26,8 @@
                     <tr>
                         <th>Id</th>
                         <th>Nazwa</th>
-                        <th>Kat. Nadrzędna</th>
                         <th>Ostateczna</th>
-                        <th class="text-end">Opcje</th>
+                        <th class="text-right">Opcje</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,14 +35,11 @@
                     <tr>
                         <td>{{ category.id }}</td>
                         <td>{{ category.name }}</td>
-                        <td>{{ category.parent ? category.parent : 'Brak'}}</td>
                         <td>{{ category.final ? 'Tak' : 'Nie' }}</td>
-                        <td class="text-end">
-                            <a href="{{ path('category_show', {'id': category.id}) }}" class="text-decoration-none">
-                                <button class="btn btn-outline-success">
-                                    <i class="fa-solid fa-eye"></i> Szczegóły
-                                </button>
-                            </a>
+                        <td class="text-right">
+                            <button class="btn btn-outline-success" data-toggle="modal" data-target="#categoryModal" data-category="{{category.id}}">
+                                <i class="fa-solid fa-eye"></i> Szczegóły
+                            </button>
                             <a href="{{ path('category_edit', {'id': category.id}) }}">
                                 <button class="btn btn-outline-warning">
                                     <i class="fa-solid fa-pen-to-square"></i> Edytuj
@@ -63,4 +59,54 @@
 
     </div>
 
+{% endblock %}
+
+{% block modal %}
+    <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoryModalLabel">Szczegóły kategorii:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose1">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body" id="modalBody">
+                <div class="text-center">
+                    <div class="py-5" id="modalSpinner">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="d-none py-2" id="modalData">
+                        <div class="d-flex align-items-center justify-content-between my-2">
+                            <span class="font-weight-bold">Id: </span>
+                            <span id="modalCategoryId"></span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between my-2">
+                            <span class="font-weight-bold">Nazwa: </span>
+                            <span id="modalCategoryName"></span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between my-2">
+                            <span class="font-weight-bold">Główna: </span>
+                            <span id="modalCategoryMain"></span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between my-2">
+                            <span class="font-weight-bold">Ostateczna: </span>
+                            <span id="modalCategoryFinal"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="modalClose2" onclick="resetModal()">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('category_index') }}
 {% endblock %}

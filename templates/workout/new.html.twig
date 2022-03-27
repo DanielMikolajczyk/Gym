@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Category{% endblock %}
+
+{% block body %}
+
+    <div class="px-5 py-3 container-lg bg-white rounded-lg shadow">
+        <div class="d-flex flex-row justify-content-between align-items-end mb-3">
+            <h1>Stwórz nowy trening</h1>
+             <a href="{{ path('workout_index') }}">
+                <button class="btn btn-primary">Powrót do listy</button>
+             </a>
+        </div>
+
+
+        {{ include('workout/_table.html.twig') }}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('workout_new') }}
+{% endblock %}

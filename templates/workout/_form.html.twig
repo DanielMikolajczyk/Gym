@@ -1,0 +1,102 @@
+<div class="my-2">
+    <form name="workout" method="post">
+        <div class="mb-3">
+            <span class="fw-bold">Infrormacje podstawowe:</span>
+        </div>
+        <div class="p-2">
+            <div class="mb-3">
+                <label for="workout_kind" class="form-label">Wybierz rodzaj treningu</label>
+                <select name="workout[kind]" id="workout_kind" class="form-select">
+                    <option selected> </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-check mb-3">
+                <label class="form-check-label" for="workout_multiperson">Wieloosobowy</label>
+                <input class="form-check-input" type="checkbox" id="workout_multiperson">
+            </div>
+            
+
+            <div class="mb-3">
+                <label for="workout_users" class="form-label">Osoby</label>
+                <input type="text" id="workout_users" name="workout[users]" required="required" maxlength="255" class="form-control">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <span class="fw-bold">Kreator planu treningowego:</span>
+        </div>
+        <div class="p-2 border">
+            <div class="mb-3">
+                <div class="d-flex justify-content-between py-2">
+                    <div>
+                        <label for="workout_users" class="form-label">Kategoria nadrzędna:</label>
+                        <button class="btn btn-primary btn-sm">+</button>
+                    </div>
+                    <button class="btn btn-primary btn-sm">Pokaż</button>
+                </div>
+                <input type="text" id="workout_users" name="workout[users]" required="required" maxlength="255" class="form-control">
+            </div>
+            <div class="ps-4">
+                <div class="mb-3 d-flex row">
+                    <div class="col-8">
+                        <label for="workout_users" class="form-label">Kategoria:</label>
+                        <button class="btn btn-primary btn-sm">+</button>
+                        <input type="text" id="workout_users" name="workout[users]" required="required" maxlength="255" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="category_filter" class="form-label">Filtry:</label>
+                        <div class="input-group">
+                            <input type="text" id="category_filter" name="category[filter]" required="required" maxlength="255" class="form-control">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><div class="h-100"><i class="fa fa-search" aria-hidden="true"></i></div></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ps-4">
+                    <div class="mb-3 d-flex row">
+                        <div class="col-8">
+                            <label for="workout_users" class="form-label">Kolumny dodatkowe:</label>
+                            <button class="btn btn-primary btn-sm">+</button>
+                            <div class="input-group">
+                                <input type="text" id="category_filter" name="category[filter]" required="required" maxlength="255" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="workout_users" class="form-label">Wartości domyślne:</label>
+                            <input type="text" id="category_filter" name="category[filter]" required="required" maxlength="255" class="form-control">
+                            </div>
+                        </div>
+                        <div class="ps-4">
+                            <div class="mb-3">
+                                <label for="workout_users" class="form-label">Ćwiczenia:</label>
+                                <button class="btn btn-primary btn-sm">+</button>
+                                <div class="input-group">
+                                    <input type="text" id="category_filter" name="category[filter]" required="required" maxlength="255" class="form-control">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">x</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        <div class="mb-3 text-right">
+            <button class="btn btn-primary " type="submit">
+                {{button_label|default('Stwórz')}} <i class="fa-solid fa-check"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+

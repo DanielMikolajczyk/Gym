@@ -13,6 +13,7 @@
         {% endblock %}
     </head>
     <body>
+        {% block modal %}{% endblock %}
         <div class="d-flex flex-row min-vh-100">
             <div class="d-flex flex-column flex-shrink-0 bg-white shadow-lg" style="width:260px;">
                 {% include 'sidebar/sidebar.html.twig' %}
@@ -20,11 +21,12 @@
             <div class="o-bg-gray w-100">
                 <nav class="bg-white p-3 mb-3">
                     <div class="pb-3">
-                        <span class="font-weight-bold h3 ms-2"></span> 
+                        <span class="font-weight-bold ml-2 h3 pb-3"></span> 
                     </div>
                 </nav>
                 {% block body %}{% endblock %}
             </div>
         </div>
+        {{ flasher_render() }}
     </body>
 </html>

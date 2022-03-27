@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WorkoutKind{% endblock %}
+
+{% block body %}
+
+    <div class="px-5 py-3 container-lg bg-white rounded-lg shadow">
+        <div class="d-flex flex-row justify-content-between align-items-end mb-3">
+            <h2>Rodzaj treningu: {{workout_kind.name}}</h2>
+             <a href="{{ path('workout_kind_index') }}">
+                <button class="btn btn-primary">Powrót do listy</button>
+             </a>
+        </div>
+        
+        <div class="my-3">
+            <div class="my-2">
+                <h4>Dane rodzaju treningu:</h4>
+            </div>
+            <div class="ml-3 my-2">
+                <span class="font-weight-bold">ID: </span>{{workout_kind.id}}
+            </div>
+            <div class="ml-3 my-2">
+                <span class="font-weight-bold">Nazwa: </span>{{workout_kind.name}}
+            </div>
+        </div>        
+
+    </div>
+{% endblock %}

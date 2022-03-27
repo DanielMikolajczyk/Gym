@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -15,27 +16,37 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups("show_category")]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank]
+    #[Groups("show_category")]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $parent;
-
-    #[ORM\Column(type: 'json', nullable: true)]
-    private $childs = [];
-
     #[ORM\Column(type: 'boolean')]
+    #[Groups("show_category")]
     private $final;
 
     #[ORM\ManyToMany(targetEntity: Excercise::class, mappedBy: 'categories')]
     private $excercises;
 
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'children')]
+    private $parent;
+
+    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'parent')]
+    private $children;
+
+    #[ORM\Column(type: 'boolean')]
+    #[Groups("show_category")]
+    private $main;
+
+
     public function __construct()
     {
         $this->excercises = new ArrayCollection();
+        $this->parent = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -60,29 +71,6 @@ class Category
         return $this;
     }
 
-    public function getParent(): ?string
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?string $parent): self
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    public function getChilds(): ?array
-    {
-        return $this->childs;
-    }
-
-    public function setChilds(?array $childs): self
-    {
-        $this->childs = $childs;
-
-        return $this;
-    }
 
     public function getFinal(): ?bool
     {
@@ -92,6 +80,18 @@ class Category
     public function setFinal(bool $final): self
     {
         $this->final = $final;
+
+        return $this;
+    }
+
+    public function getMain(): ?bool
+    {
+        return $this->main;
+    }
+
+    public function setMain(bool $main): self
+    {
+        $this->main = $main;
 
         return $this;
     }
@@ -123,9 +123,54 @@ class Category
         return $this;
     }
 
-    #[Assert\Callback]
-    public function validate(ExecutionContextInterface $context, $payload)
+    /**
+     * @return Collection|self[]
+     */
+    public function getParent(): Collection
     {
- 
+        return $this->parent;
+    }
+
+    public function addParent(self $parent): self
+    {
+        if (!$this->parent->contains($parent)) {
+            $this->parent[] = $parent;
+        }
+
+        return $this;
+    }
+
+    public function removeParent(self $parent): self
+    {
+        $this->parent->removeElement($parent);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getChildren(): Collection
+    {
+        return $this->children;
+    }
+
+    public function addChild(self $child): self
+    {
+        if (!$this->children->contains($child)) {
+            $this->children[] = $child;
+            $child->addParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChild(self $child): self
+    {
+        if ($this->children->removeElement($child)) {
+            $child->removeParent($this);
+        }
+
+        return $this;
     }
 }

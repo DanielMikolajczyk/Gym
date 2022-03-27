@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit UserGroup{% endblock %}
+
+{% block body %}
+    <div class="px-5 py-3 container-lg bg-white rounded-lg shadow">
+        <div class="d-flex flex-row justify-content-between align-items-end mb-3">
+            <h1>Edytuj grupę: {{user_group.name}}</h1>
+             <a href="{{ path('user_group_index') }}">
+                <button class="btn btn-primary">Powrót do listy</button>
+             </a>
+        </div>
+
+
+        {{ include('user_group/_form.html.twig', {'button_label': 'Update'}) }}
+
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('user_group_edit') }}
+{% endblock %}

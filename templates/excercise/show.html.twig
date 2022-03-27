@@ -3,28 +3,30 @@
 {% block title %}Excercise{% endblock %}
 
 {% block body %}
-    <h1>Excercise</h1>
+    <div class="px-5 py-3 container-lg bg-white rounded-lg shadow">
+        <div class="d-flex flex-row justify-content-between align-items-end mb-3">
+            <h2>Ćwiczenie: {{excercise.name}}</h2>
+            {{ include('excercise/_delete_form.html.twig') }}
+             <a href="{{ path('excercise_index') }}">
+                <button class="btn btn-primary">Powrót do listy</button>
+             </a>
+        </div>
+        
+        <div class="my-3">
+            <div class="my-2">
+                <h4>Dane użytkownika:</h4>
+            </div>
+            <div class="ml-3 my-2">
+                <span class="font-weight-bold">ID: </span>{{excercise.id}}
+            </div>
+            <div class="ml-3 my-2">
+                <span class="font-weight-bold">Nazwa: </span>{{excercise.name}}
+            </div>
+            <div class="ml-3 my-2">
+                <span class="font-weight-bold">Link url: </span>{{excercise.url}}
+            </div>
+        </div>        
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ excercise.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ excercise.name }}</td>
-            </tr>
-            <tr>
-                <th>Url</th>
-                <td>{{ excercise.url }}</td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
 
-    <a href="{{ path('excercise_index') }}">back to list</a>
-
-    <a href="{{ path('excercise_edit', {'id': excercise.id}) }}">edit</a>
-
-    {{ include('excercise/_delete_form.html.twig') }}
 {% endblock %}

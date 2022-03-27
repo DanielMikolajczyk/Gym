@@ -1,7 +1,7 @@
 <div class="p-3">
-    <a href="" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-        <span><i class="fa-solid fa-dumbbell h3"></i></span>
-        <span class="font-weight-bold h3 ms-2 mb-3"> Siłownia</span>
+    <a href="" class="d-flex align-items-center pb-3 my-2 text-dark text-decoration-none border-bottom">
+        <span><i class="fa-solid fa-dumbbell h3 mr-2"></i></span>
+        <span class="font-weight-bold h3 ml-2 mb-3"> Siłownia</span>
     </a>
     <ul class="list-unstyled ps-0 ">
         {% include "sidebar/_li.html.twig" with {
@@ -17,6 +17,27 @@
             'route_display' : ['Lista ćwiczeń','Dodaj ćwiczenie'],
             'routes'        : ['excercise_index','excercise_new']}
         %}
+
+        {% include "sidebar/_li.html.twig" with {
+            'category'      : 'workout_kind',
+            'display'       : 'Rodzaj Treningu',
+            'route_display' : ['Lista rodzajów','Stwórz rodzaj'],
+            'routes'        : ['workout_kind_index','workout_kind_new']}
+        %}
+
+        {% include "sidebar/_li.html.twig" with {
+            'category'      : 'users',
+            'display'       : 'Użytkownicy',
+            'route_display' : ['Lista użytkowników','Stwórz użytkownika','Lista grup','Stwórz grupę'],
+            'routes'        : ['user_index','user_new','user_group_index','user_group_new']}
+        %}
         
+        {% include "sidebar/_li.html.twig" with {
+            'category'      : 'workout',
+            'display'       : 'Trening',
+            'route_display' : ['Stwórz trening'],
+            'routes'        : ['workout_new']}
+        %}
+
     </ul>
 </div>

@@ -52,6 +52,7 @@ class CategoryRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.name LIKE :val')
+            ->andWhere('c.final = false')
             ->setParameter('val','%'.$value.'%')
             ->orderBy('c.name', 'ASC')
             ->getQuery()
@@ -59,12 +60,27 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findAllNotFinal(): ?array
+    public function findAllFinalWhereNameLike($value): ?array
     {
         return $this->createQueryBuilder('c')
+            ->andWhere('c.name LIKE :val')
+            ->andWhere('c.final = true')
+            ->setParameter('val','%'.$value.'%')
             ->orderBy('c.name', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
+
+    //Probably useless
+    public function findAllNotFinal(): ?array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.final = false')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }

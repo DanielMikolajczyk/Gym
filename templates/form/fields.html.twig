@@ -1,4 +1,16 @@
 {% block _category_parent_widget %}
-    <input type="text" id="category_parent" class="form-control" name="category[parent]" maxlength="255">
-    <input type="hidden" id="category_parent_data" name="category_parent_data_name" data-information="">
+    <input type="text" id="category_parent" class="form-control" name="category[parent]" value="{{form.vars.data ?? ''}}" data-names="{{form.vars.data_names ?? ''}}">
+
+{% endblock %}
+
+{% block _category_excercises_widget %}
+    <input type="text" id="category_excercises" class="form-control" name="category[excercises]" value="{{form.vars.data ?? ''}}" data-names="{{form.vars.data_names ?? ''}}">
+{% endblock %}
+
+{% block _excercise_categories_widget %}
+    <input type="text" id="excercise_categories" class="form-control" name="excercise[categories]" value="{{form.vars.data ?? ''}}" data-names="{{form.vars.data_names ?? ''}}">
+{% endblock %}
+
+{% block _user_group_Users_widget %}
+    <input type="text" id="user_group_Users" class="form-control" name="user_group[Users]" value="{{form.vars.data ?? ''}}" data-names="{{form.vars.data_names ?? ''}}">
 {% endblock %}

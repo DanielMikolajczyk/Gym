@@ -11,10 +11,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Flasher\Prime\FlasherInterface;
 
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
+    private $flasher;
+
+    public function __construct(FlasherInterface $flasher)
+    {
+        $this->flasher = $flasher;    
+    }
+
     #[Route('/', name: 'category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
@@ -24,27 +32,21 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/new', name: 'category_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, ExcerciseRepository $excerciseRepository, CategoryRepository $categoryRepository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $category = new Category();
-
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            dd($category);
+        if ($form->isSubmitted() && $form->isValid()) { 
             $entityManager->persist($category);
             $entityManager->flush();
-
+            
+            $this->flasher->addSuccess('Udało się stworzyć kategorię: '.$category->getName());
             return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
-        }
-        foreach($excerciseRepository->findAll() as $excercise){
-            $excerciseNames[] = $excercise->getName();
         }
 
         return $this->renderForm('category/new.html.twig', [
-            'category' => $category,
-            'excercises' => $excerciseNames,
             'form' => $form,
         ]);
     }
@@ -68,10 +70,13 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        $parentIds = $category->getParent()->map(function($parent){
+            return $parent->getId();
+        })->toArray();
         return $this->renderForm('category/edit.html.twig', [
             'category' => $category,
             'form' => $form,
+            'parentIds' => $parentIds
         ]);
     }
 

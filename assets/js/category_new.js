@@ -1,30 +1,13 @@
 import $ from 'jquery';
-$(document).ready(function() {
-    //let sth = $('#category_childs').data('info').split(',');
-    //console.log(sth)
-    
-    // $('#input_category_name').amsifySuggestags({
-    //     suggestions: sth,
-    //     whiteList: true,
-    //     defaultTagClass: 'badge',
-    //     classes: ['bg-primary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info'],
-    //     selectOnHover: false,
-    //     printValues: false,
-    // });
-
-    $('#category_excercises').amsifySuggestags({
-        suggestionsAction : {
-            minChars: 2,
-            minChange: -1,
-            delay: 200,
-            type: 'GET',
-            url: '/api/exercise/suggest'
-        },
-        whiteList: true,
-        selectOnHover: false,
-        printValues: false,
-        noSuggestionMsg: 'Nie znaleziono podanych ćwiczeń'
-    })
+$(function() {
+    $('#category_final').prop('checked',true);
+    $('#category_final').on("change",function(){
+        $('#category_excercises').parent().toggleClass('d-none');
+        $('#category_excercises').val('');
+        // $('.amsify-suggestags-input-area').children("span").each(function(){
+        //     console.log("1");
+        // });
+    });
 
     $('#category_parent').amsifySuggestags({
         suggestionsAction : {
@@ -40,6 +23,23 @@ $(document).ready(function() {
         noSuggestionMsg: 'Nie znaleziono podanej kateogrii'
     })
 
-    $('#category_parent_data').data('information',50);
+    $('#category_excercises').amsifySuggestags({
+        suggestionsAction : {
+            minChars: 2,
+            minChange: -1,
+            delay: 200,
+            type: 'GET',
+            url: '/api/exercise/suggest'
+        },
+        whiteList: true,
+        selectOnHover: false,
+        printValues: false,
+        noSuggestionMsg: 'Nie znaleziono podanych ćwiczeń'
+    })
+
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    });
 });
 

@@ -1,0 +1,19 @@
+<div class="row g-0 mx-0 bg-warning font-weight-bold">
+    <div class="col-12 p-0 bg-warning border border-dark">{{data.title}}</div>
+</div>
+{% if data.layout == 1 %}
+    <div class="row g-0 mx-0 bg-warning font-weight-bold">
+        <div class="col-6 p-0 border border-dark bg-warning">Ćwiczenie</div>
+        <div class="col-6 p-0 border border-dark bg-warning">Dozowanie</div>
+    </div>
+{% endif %}
+{% if data.layout == 2 %}
+    <div class="row g-0 mx-0 bg-warning font-weight-bold">
+        <div class="col-2 p-0 border border-dark bg-warning">Tydzień</div>
+        <div class="col-3 p-0 border border-dark bg-warning">Ćwiczenie</div>
+        <div class="col-2 p-0 border border-dark bg-warning">Serie</div>
+        <div class="col-2 p-0 border border-dark bg-warning">Powt.</div>
+        <div class="col-2 p-0 border border-dark bg-warning">Obciążenie</div>
+        <div class="col-1 p-0 border border-dark bg-warning">Przerwa</div>
+    </div>
+{% endif %}

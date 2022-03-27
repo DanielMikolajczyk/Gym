@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Excercise;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\Type\SuggestagsType;
 
 class ExcerciseType extends AbstractType
 {
@@ -14,7 +16,9 @@ class ExcerciseType extends AbstractType
         $builder
             ->add('name')
             ->add('url')
-            ->add('categories')
+            ->add('categories',SuggestagsType::class,[
+                'class_transformer' => Category::class
+            ])
         ;
     }
 

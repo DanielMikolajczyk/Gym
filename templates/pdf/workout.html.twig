@@ -1,0 +1,83 @@
+ <div class="text-center border" id="table-header">
+     <div class="bg-dark text-white border-dark border">
+         <span id="workout_kind_title">{{kind ?? '1'}}</span>
+     </div>
+     <div>
+         {% for workoutType,sections in plan %}
+             <div class="bg-danger border-dark border">
+                 <span class="bg-danger text-white shadow-none">
+                     {% if workoutType == 'warmup' %}Rozgrzewka{% endif %}
+                     {% if workoutType == 'reactivity' %}Reaktywność{% endif %}
+                     {% if workoutType == 'injuryPrevention' %}Prewencja urazów{% endif %}
+                     {% if workoutType == 'endurance' %}Wytrzymałość{% endif %}
+                     {% if workoutType == 'preparation' %}PRZYGOTOWANIE RUCHOWE{% endif %}
+                     {% if workoutType == 'strength' %}SIŁA{% endif %}
+                     {% if workoutType == 'correction' %}PROGRAM KOREKCYJNY{% endif %}
+                 </span>
+             </div>    
+
+             {# Generate table contents #}
+             {% for groups in sections %}
+
+                 {% if workoutType == 'warmup' %}
+                     {# Include headers for warmup #}
+                     {% include "pdf/headers/warmup.html.twig" %}
+                     {# Include inputs for warmup #}
+                     {% for row in groups %}
+                         {% include "pdf/inputs/warmup.html.twig" with { 'data' : row } %}
+                     {% endfor %}
+                 {% endif %}
+
+                 {# Reactivity and InjuryPrevention have the same table layout #}
+                 {% if (workoutType == 'reactivity') or (workoutType == 'injuryPrevention')  %}
+                     {% include "pdf/headers/reactivity.html.twig" %}
+                     {% for row in groups %}
+                         {% include "pdf/inputs/reactivity.html.twig" with { 'data' : row } %}
+                     {% endfor %}
+                 {% endif %}
+                 
+                 {% if workoutType == 'endurance' %}
+                     {% include "pdf/headers/endurance.html.twig" %}
+                     {% for row in groups %}
+                         {% include "pdf/inputs/endurance.html.twig" with { 'data' : row } %}
+                     {% endfor %}
+                 {% endif %}
+
+                 {% if workoutType == 'strength' %}
+                     {% include "pdf/headers/strength.html.twig" with {'data' : groups }  %}
+                     {% for row in groups %}
+                         {% if row is iterable %}
+                             {% include "pdf/inputs/strength.html.twig" with { 'data' : row } %}
+                         {% endif %}
+                     {% endfor %}
+                 {% endif %}
+
+                 {% if workoutType == 'preparation' %}
+                     {% include "pdf/headers/preparation.html.twig" with {'data' : groups }  %}
+                     {% for row in groups %}
+                         {% if row is iterable %}
+                             {% include "pdf/inputs/preparation.html.twig" with { 'data' : row, 'layout' : groups.layout } %}
+                         {% endif %}
+                     {% endfor %}
+                 {% endif %}
+
+                 {% if workoutType == 'correction' %}
+                     {% include "pdf/headers/correction.html.twig" with {'data' : groups }  %}
+                     {% for row in groups %}
+                         {% if row is iterable %}
+                             {% include "pdf/inputs/correction.html.twig" with { 'data' : row } %}
+                         {% endif %}
+                     {% endfor %}
+                 {% endif %}
+
+
+
+
+             {% endfor %}
+             
+         {% endfor %}
+         
+     </div>
+
+
+ </div>
