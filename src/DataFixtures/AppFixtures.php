@@ -7,6 +7,7 @@ use App\Factory\CategoryFactory;
 use App\Factory\ExcerciseFactory;
 use App\Factory\UserFactory;
 use App\Factory\WorkoutKindFactory;
+use App\Repository\CategoryRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -14,6 +15,10 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        WorkoutKindFactory::createOne(['name' => 'Wstawka Motoryczna']);
+        WorkoutKindFactory::createOne(['name' => 'Trening Indywidualny']);
+        WorkoutKindFactory::createOne(['name' => 'Trening Grupowy']);
+        WorkoutKindFactory::createOne(['name' => 'Program Korekcyjny']);
         /** @var Category */
         //$mainCat = CategoryFactory::createOne(['name'=>'Reaktywność','final'=>false,'main'=>true])->object();
         //$mainCat1 = CategoryFactory::createOne(['name'=>'Siła','final'=>false,'main'=>true])->object();
@@ -28,12 +33,21 @@ class AppFixtures extends Fixture
             //Create subcategories recursively
             $this->createSubdirectories($parent,$arr);
         }
+        //Create these categories separately so it is able to populate it with excercises
+        $enduranceCategory = CategoryFactory::createOne(['name'=>'Wytrzymałość','final'=>false,'main'=>true]);
+        /** @var Category */
+        $enduranceCategory = $enduranceCategory->object();
+        $methodCategory = CategoryFactory::createOne(['name'=>'Metoda','final'=>true,'main'=>false]);
+        $methodCategory->addParent($enduranceCategory);
+        /** @var Category */
+        $methodCategory = $methodCategory->object();
 
-        WorkoutKindFactory::createOne(['name' => 'Wstawka Motoryczna']);
-        WorkoutKindFactory::createOne(['name' => 'Trening Indywidualny']);
-        WorkoutKindFactory::createOne(['name' => 'Trening Grupowy']);
-        WorkoutKindFactory::createOne(['name' => 'Program Korekcyjny']);
-
+        foreach($this->methodExcercises as $name){
+            $excercise = ExcerciseFactory::createOne(['name'=>$name]);
+            $excercise = $excercise->object();
+            $excercise->addCategory($methodCategory);
+        }
+        
         UserFactory::createMany(5);
         
         //$categories = CategoryFactory::createMany(5);
@@ -431,62 +445,6 @@ class AppFixtures extends Fixture
                 'Mm. skośne brzucha',
                 'Gry i zabawy siłowe'
             ],
-            'Wytrzymałość' => [
-                'Metoda' => [
-                    'MAS - PDI',
-                    'MAS - ADI',
-                    'MAS - PKI',
-                    'MAS - AKI',
-                    'Gry kondycyjne',
-                    'Wytzymałość szybkościowa - krókie sprinty',
-                    'Wytzymałość szybkościowa - długie sprinty',
-                    'Wytrzymałość mocy',
-                    'Interwał ekstentywny',
-                    'Interwał intensywny',
-                    'Bieg ciągły',
-                    'Zabawa biegowa',
-                    'Tabata',
-                    'Zmodyfikowana tabata',
-                    'Obwód stacyjny',
-                    'Strumień',
-                    'Kompleksy sztangowe',
-                    'Trening strongmana',
-                    'AMRAP',
-                    'EMOM',
-                    'Time goal',
-                    'Rep goal',
-                    'Symulacja treningu wysokogórskiego',
-                    'Twot'
-                ],
-                'Intensywność' => [
-                    '80% MAS',
-                    '85% MAS',
-                    '90% MAS',
-                    '95% MAS',
-                    '100% MAS',
-                    '105% MAS',
-                    '110% MAS',
-                    '115% MAS',
-                    '120% MAS',
-                    '125% MAS',
-                    '130% MAS',
-                    '3,4 m/s',
-                    '3,6 m/s',
-                    '3,8 m/s',
-                    '4,0 m/s',
-                    '4,2 m/s',
-                    '4,4 m/s',
-                    '4,6 m/s',
-                    '4,8 m/s',
-                    '5,0 m/s',
-                    'Max.',
-                    'Sprint',
-                    'Tlenowa regeneracyjna 60-75 % HR max.',
-                    'Podprogowa: 75 - 85 % HR max.',
-                    'Progowa: 85 % HR max.',
-                    'Beztlenowa mleczanowa 85 - 100 % HR max.'
-                ]
-            ],
         ],
         'Rozgrzewka' => [
             'Forma' => [
@@ -845,5 +803,32 @@ class AppFixtures extends Fixture
             ]
         ]
 
+    ];
+
+    private $methodExcercises = [
+        'MAS - PDI',
+        'MAS - ADI',
+        'MAS - PKI',
+        'MAS - AKI',
+        'Gry kondycyjne',
+        'Wytzymałość szybkościowa - krókie sprinty',
+        'Wytzymałość szybkościowa - długie sprinty',
+        'Wytrzymałość mocy',
+        'Interwał ekstentywny',
+        'Interwał intensywny',
+        'Bieg ciągły',
+        'Zabawa biegowa',
+        'Tabata',
+        'Zmodyfikowana tabata',
+        'Obwód stacyjny',
+        'Strumień',
+        'Kompleksy sztangowe',
+        'Trening strongmana',
+        'AMRAP',
+        'EMOM',
+        'Time goal',
+        'Rep goal',
+        'Symulacja treningu wysokogórskiego',
+        'Twot'
     ];
 }
